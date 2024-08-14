@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import StandardScaler
+import joblib 
 
 def connect_db():
     try:
@@ -73,6 +74,9 @@ def train_neural_network(features, target):
 
     print(f"Train MSE: {train_error}")
     print(f"Test MSE: {test_error}")
+
+    joblib.dump(nn, 'final_model.pkl')
+    joblib.dump(scaler, 'scaler.pkl')
 
     return nn, scaler
 
